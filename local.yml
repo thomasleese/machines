@@ -1,5 +1,5 @@
 ---
-- hosts: macbook-pro
+- hosts: macbookpro
   connection: local
   roles:
     - role: jetbrains
