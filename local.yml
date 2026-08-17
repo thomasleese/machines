@@ -6,3 +6,4 @@
     - role: dotfiles
     - role: fish
     - role: jetbrains
+    - role: mise

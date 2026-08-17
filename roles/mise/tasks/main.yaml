@@ -1,0 +1,19 @@
+---
+- name: Install Mise
+  community.general.homebrew:
+    name: mise
+    state: upgraded
+
+- name: Install Usage
+  ansible.builtin.shell:
+    cmd: mise use -g usage
+
+- name: Create Fish autocompletion directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/fish/completions"
+    state: directory
+    mode: "0755"
+
+- name: Configure Fish autocompletion
+  ansible.builtin.shell:
+    cmd: mise completion fish > ~/.config/fish/completions/mise.fish
