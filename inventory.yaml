@@ -1,3 +1,4 @@
 macbookpro:
   hosts:
-    MacBook-Pro-de-Thomas.local
+    MacBookPro:
+    MacBook-Pro-de-Thomas.local:
