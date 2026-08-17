@@ -1,0 +1,31 @@
+---
+- name: Install Git
+  community.general.homebrew:
+    name: "{{ item }}"
+    state: upgraded
+  with_items:
+    - difftastic
+    - gh
+    - git
+    - git-lfs
+
+- name: Create developer directory
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/Developer/thomasleese"
+    state: directory
+    mode: "0755"
+
+- name: Clone repository
+  ansible.builtin.git:
+    repo: https://github.com/thomasleese/dotfiles
+    dest: "{{ ansible_env.HOME }}/Developer/thomasleese/dotfiles"
+
+- name: Install Stow
+  community.general.homebrew:
+    name: stow
+    state: upgraded
+
+- name: Stow dotfiles
+  ansible.builtin.shell:
+    cmd: stow -t $HOME fish git
+    chdir: "{{ ansible_env.HOME }}/Developer/thomasleese/dotfiles"

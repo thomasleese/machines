@@ -3,5 +3,6 @@
   connection: local
   roles:
     - role: 1password
+    - role: dotfiles
     - role: fish
     - role: jetbrains
