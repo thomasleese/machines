@@ -1,0 +1,24 @@
+---
+- name: Install Fish
+  community.general.homebrew:
+    name: fish
+    state: upgraded
+
+- name: Install Starship
+  community.general.homebrew:
+    name: starship
+    state: upgraded
+
+- name: Add Fish to /etc/shells
+  become: true
+  ansible.builtin.lineinfile:
+    path: /etc/shells
+    line: /opt/homebrew/bin/fish
+    state: present
+
+- name: Set user shell to Fish
+  become: true
+  ansible.builtin.user:
+    name: "{{ ansible_user_id }}"
+    shell: /opt/homebrew/bin/fish
+    state: present
