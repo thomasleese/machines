@@ -12,3 +12,11 @@ minimum set of software needed to run Ansible:
 ```shell
 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/thomasleese/machines/HEAD/bootstrap.sh)"
 ```
+
+## Configure
+
+Now that we've bootstrapped the machine, we can use Ansible to configure it:
+
+```shell
+ansible-pull -U https://github.com/thomasleese/machines.git
+```
