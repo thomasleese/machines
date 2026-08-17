@@ -1,0 +1,5 @@
+---
+- hosts: macbook-pro
+  connection: local
+  roles:
+    - role: jetbrains

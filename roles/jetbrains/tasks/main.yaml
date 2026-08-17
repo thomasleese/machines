@@ -1,0 +1,13 @@
+---
+- name: Install JetBrains IDEs using Homebrew
+  community.general.homebrew_cask:
+    name: "{{ item }}"
+    state: upgraded
+  with_items:
+    - clion
+    - datagrip
+    - goland
+    - pycharm
+    - rubymine
+    - rustrover
+    - webstorm
