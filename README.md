@@ -18,5 +18,5 @@ minimum set of software needed to run Ansible:
 Now that we've bootstrapped the machine, we can use Ansible to configure it:
 
 ```shell
-ansible-pull -U https://github.com/thomasleese/machines.git
+ansible-pull -K -U https://github.com/thomasleese/machines.git
 ```
