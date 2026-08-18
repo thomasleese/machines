@@ -1,0 +1,41 @@
+---
+- name: Install Docker
+  ansible.builtin.apt:
+    pkg: [docker.io, docker-compose]
+
+- name: Create group
+  ansible.builtin.group:
+    name: home-assistant
+    state: present
+
+- name: Create user
+  ansible.builtin.user:
+    name: home-assistant
+    home: /home/home-assistant
+    shell: /usr/sbin/nologin
+    comment: Home Assistant
+    group: home-assistant
+    password: "*"
+    state: present
+    remove: true
+    force: true
+
+- name: Create configuration directory
+  ansible.builtin.file:
+    state: directory
+    path: /home/home-assistant/config
+    owner: home-assistant
+    group: home-assistant
+    mode: "0755"
+
+- name: Copy Docker Compose configuration
+  ansible.builtin.copy:
+    src: docker-compose.yaml
+    dest: /home/home-assistant/docker-compose.yaml
+    owner: home-assistant
+    group: home-assistant
+    mode: "0644"
+
+- name: Create and start services
+  community.docker.docker_compose_v2:
+    project_src: /home/home-assistant

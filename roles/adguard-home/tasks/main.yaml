@@ -1,0 +1,57 @@
+---
+- name: Install Docker
+  ansible.builtin.apt:
+    pkg: [docker.io, docker-compose]
+
+- name: Create group
+  ansible.builtin.group:
+    name: adguard-home
+    state: present
+
+- name: Create user
+  ansible.builtin.user:
+    name: adguard-home
+    home: /home/adguard-home
+    shell: /usr/sbin/nologin
+    comment: AdGuard Home
+    group: adguard-home
+    password: "*"
+    state: present
+    remove: true
+    force: true
+
+- name: Create configuration directory
+  ansible.builtin.file:
+    state: directory
+    path: /home/adguard-home/conf
+    owner: adguard-home
+    group: adguard-home
+    mode: "0755"
+
+- name: Create working directory
+  ansible.builtin.file:
+    state: directory
+    path: /home/adguard-home/work
+    owner: adguard-home
+    group: adguard-home
+    mode: "0700"
+
+- name: Copy AdGuard Home configuration
+  ansible.builtin.template:
+    src: AdGuardHome.yaml
+    dest: /home/adguard-home/conf/AdGuardHome.yaml
+    owner: adguard-home
+    group: adguard-home
+    mode: "0644"
+
+- name: Copy Docker Compose configuration
+  ansible.builtin.copy:
+    src: docker-compose.yaml
+    dest: /home/adguard-home/docker-compose.yaml
+    owner: adguard-home
+    group: adguard-home
+    mode: "0644"
+
+- name: Create and start services
+  community.docker.docker_compose_v2:
+    project_src: /home/adguard-home

@@ -1,0 +1,11 @@
+server_endpoint: "{{ lookup('community.general.onepassword', 'WireGuard (London)', field='endpoint') }}"
+server_public_key: "{{ lookup('community.general.onepassword', 'WireGuard (London)', field='public key') }}"
+server_private_key: "{{ lookup('community.general.onepassword', 'WireGuard (London)', field='private key') }}"
+
+iphone_public_key: "{{ lookup('community.general.onepassword', 'WireGuard (iPhone)', field='public key') }}"
+iphone_private_key: "{{ lookup('community.general.onepassword', 'WireGuard (iPhone)', field='private key') }}"
+iphone_pre_shared_key: "{{ lookup('community.general.onepassword', 'WireGuard (iPhone)', field='pre-shared key') }}"
+
+macbook_public_key: "{{ lookup('community.general.onepassword', 'WireGuard (MacBook)', field='public key') }}"
+macbook_private_key: "{{ lookup('community.general.onepassword', 'WireGuard (MacBook)', field='private key') }}"
+macbook_pre_shared_key: "{{ lookup('community.general.onepassword', 'WireGuard (MacBook)', field='pre-shared key') }}"

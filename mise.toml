@@ -1,0 +1,12 @@
+[tools]
+ansible = { version = "13.5", pipx_args = "--include-deps --preinstall bcrypt==4.3.0 --preinstall passlib", uvx = "false" }
+pipx = "1.11"
+python = "3.14"
+
+[tasks.inventory]
+description = "List the inventory"
+run = "ansible-inventory --list"
+
+[tasks.playbook]
+description = "Run the main playbook"
+run = "ansible-playbook --ask-become-pass --diff site.yaml"

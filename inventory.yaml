@@ -1,4 +1,7 @@
 macbookpro:
   hosts:
-    MacBookPro:
-    MacBook-Pro-de-Thomas.local:
+    macbook-pro-de-thomas.local:
+
+raspberrypi:
+  hosts:
+    raspberry-pi.local:

@@ -1,0 +1,2 @@
+username: "{{ lookup('community.general.onepassword', 'AdGuard Home (London)', field='username') }}"
+password: "{{ lookup('community.general.onepassword', 'AdGuard Home (London)', field='password') }}"
