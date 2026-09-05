@@ -1,0 +1,5 @@
+---
+- name: Install Little Snitch
+  community.general.homebrew_cask:
+    name: little-snitch
+    state: upgraded
